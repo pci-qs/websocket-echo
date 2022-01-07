@@ -9,6 +9,10 @@ const app = express();
 app.use(express.static(path.join(__dirname, '/public')));
 
 const server = createServer(app);
+server.listen(8080, function () {
+  console.log('Listening on http://localhost:8080');
+});
+
 const wss = new WebSocket.Server({ server });
 wss.on('connection', function (ws) {
   console.log('Client connected');
@@ -21,7 +25,4 @@ wss.on('connection', function (ws) {
   ws.on('close', function () {
     console.log('Client disconnected');
   });
-});
-server.listen(5000, function () {
-  console.log('Listening on http://localhost:5000');
 });
